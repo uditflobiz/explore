@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2023_02_16_130703) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
