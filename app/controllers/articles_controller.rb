@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+  
+  include ActionController::HttpAuthentication::Basic::ControllerMethods
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  
   def index
     render json: Article.all
   end
@@ -48,6 +52,6 @@ class ArticlesController < ApplicationController
   
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status)
     end
 end
