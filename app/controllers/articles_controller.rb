@@ -4,58 +4,45 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    render json: Article.find(params[:id])
-  end
-
-  def new
-    @article = Article.new
+    article = Article.find(params[:id])
+    render json: article
   end
 
   def create
-    @article = Article.new(article_params)
+    article = Article.new(article_params)
 
-    if @article.save
+    if article.save
         render json: {
             'status': 'processed',
-            'id': @article.id
+            'id': article.id
         }
     else
-      render json: {
-            'status': 'unprocessable_entity'
-        }
+        render json: article.errors
     end
   end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
-
   def update
-    @article = Article.find(params[:id])
+    article = Article.find(params[:id])
 
-    if @article.update(article_params)
+    if article.update(article_params)
         render json: {
             'status': 'processed',
-            'id': @article.id
+            'id': article.id
         }
     else
-        render json: {
-            'status': 'unprocessable_entity'
-        }
+        render json: article.errors.as_json
     end
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    if  @article.destroy
+    article = Article.find(params[:id])
+    if  article.destroy
         render json: {
             'status': 'processed',
-            'id': @article.id
+            'id': article.id
         }
     else
-        render json: {
-            'status': 'unprocessable_entity'
-        }
+        render json: article.errors.as_json
     end
   end
   
