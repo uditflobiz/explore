@@ -59,6 +59,7 @@ GEM
     acts_as_paranoid (0.7.3)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
+    bcrypt (3.1.18)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -171,6 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_paranoid
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   listen (~> 3.2)
