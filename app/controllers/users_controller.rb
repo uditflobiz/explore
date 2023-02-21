@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:auto_login]
-
+  
   def create
     @user = User.create(user_params)
     if @user.valid?
@@ -27,10 +27,17 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def temp_set
+    $redis.set("mykey", params[:value])
+  end
+
+  def temp_get
+    render json: { "mykey": $redis.get("mykey")}
+  end
+
   private
 
   def user_params
     params.permit(:email, :password)
   end
-
 end
