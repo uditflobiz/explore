@@ -36,6 +36,10 @@ class UsersController < ApplicationController
     render json: { "mykey": $redis.hget("myhkey", "key1")}
   end
 
+  def test_sidekiq
+    BaseWorkerJob.perform_at(5.seconds.from_now, "abc")
+  end
+
   private
 
   def user_params
