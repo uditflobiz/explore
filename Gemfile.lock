@@ -37,6 +37,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_model_otp (2.3.1)
+      activemodel
+      rotp (~> 6.2.0)
     activejob (6.0.6.1)
       activesupport (= 6.0.6.1)
       globalid (>= 0.3.6)
@@ -153,6 +156,7 @@ GEM
       redis-client (>= 0.9.0)
     redis-client (0.12.2)
       connection_pool
+    rotp (6.2.2)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -179,6 +183,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_otp
   acts_as_paranoid
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
