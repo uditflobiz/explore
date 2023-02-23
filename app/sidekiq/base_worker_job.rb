@@ -1,6 +1,6 @@
 class BaseWorkerJob
   include Sidekiq::Job
-  sidekiq_options retry: false
+  sidekiq_options queue: 'low', retry: false
 
   def perform(test_arg)
     puts("xyz")
