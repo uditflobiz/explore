@@ -28,12 +28,14 @@ class UsersController < ApplicationController
   end
 
   def temp_set
-    $redis.hset("myhkey", "key1", params[:value])
+    $redis.set("mykey", params[:value])
+    # $redis.hset("myhkey", "key1", params[:value])
     # $redis.expire("myhkey", 3)
   end
 
   def temp_get
-    render json: { "mykey": $redis.hget("myhkey", "key1")}
+    render json: { "mykey": $redis.get("mykey")}
+    # render json: { "mykey": $redis.hget("myhkey", "key1")}
   end
 
   def test_sidekiq
