@@ -14,7 +14,13 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    render json: @article.errors unless @article.save
+    begin
+      @article.save!
+    rescue ActiveRecord::RecordInvalid => e
+      render json:{
+        error: @article.errors.full_messages
+      }
+    end
   end
 
   def update
