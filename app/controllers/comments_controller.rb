@@ -1,22 +1,21 @@
 class CommentsController < ApplicationController
     def create
-        puts(params)
         article = Article.find(params[:article_id])
         render json: article.comments.create(comment_params)
     end
 
-    def show
-        render json: Article.find(params[:id]).comments
+    def index
+        render json: Article.find(params[:article_id]).comments
     end
 
     def destroy
         article = Article.find(params[:article_id])
         comment = article.comments.find(params[:id])
         comment.destroy
-      end
+    end
 
     private
     def comment_params
-      params.permit(:commenter, :body, :status)
+      params.permit(:commenter, :body, :status, :commenter_id, :commenter_type)
     end
 end

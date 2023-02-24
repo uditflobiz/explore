@@ -5,8 +5,9 @@ Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: "_interslice_session
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq" 
-  resources :articles
-  resources :comments
+  resources :articles do
+    resources :comments
+  end
 
   resources :users, only: [:create]
 
